@@ -32,6 +32,11 @@ export type Product = {
   thumbnail: string;
 };
 
+export type ProductListItem = Pick<Product, "id" | "title" | "category" | "price" | "rating" | "stock" | "thumbnail"> & {
+  status: "active" | "draft";
+  updatedAt: string;
+};
+
 export type ProductListResponse = {
   products: Product[];
   total: number;
