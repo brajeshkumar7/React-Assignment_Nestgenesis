@@ -1,10 +1,12 @@
-export type Review = {
+export type ProductReview = {
   rating: number;
   comment: string;
   date: string;
   reviewerName: string;
   reviewerEmail: string;
 };
+
+export type Review = ProductReview;
 
 export type Product = {
   id: number;
@@ -30,6 +32,13 @@ export type Product = {
   thumbnail: string;
 };
 
-export type ProductPage = { products: Product[]; total: number; skip: number; limit: number };
+export type ProductListResponse = {
+  products: Product[];
+  total: number;
+  skip: number;
+  limit: number;
+};
+
+export type ProductPage = ProductListResponse;
 
 export type ProductInput = Pick<Product, "title" | "description" | "category" | "price" | "stock" | "thumbnail">;

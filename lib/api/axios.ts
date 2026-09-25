@@ -1,7 +1,8 @@
 import axios from "axios";
+import { DUMMYJSON_BASE_URL } from "@/lib/constants";
 
 const api = axios.create({
-  baseURL: "https://dummyjson.com",
+  baseURL: DUMMYJSON_BASE_URL,
   headers: { "Content-Type": "application/json" },
 });
 

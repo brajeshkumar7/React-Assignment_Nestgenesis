@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
 import ProductSearch from "@/components/products/ProductSearch";
 import ProductFilters from "@/components/products/ProductFilters";
 import ProductTable from "@/components/products/ProductTable";
@@ -36,7 +35,6 @@ function setUrl(query: Query, replace = false) {
 }
 
 export default function ProductsPage() {
-  const router = useRouter();
   const [query, setQuery] = useState<Query>({ page: 1, pageSize: 10, q: "", category: "", sort: "", order: "asc" });
   const [draft, setDraft] = useState("");
   const [products, setProducts] = useState<Product[]>([]);

@@ -1,4 +1,4 @@
-export type User = {
+export type AuthResponse = {
   id: number;
   username: string;
   email: string;
@@ -8,3 +8,5 @@ export type User = {
   accessToken: string;
   refreshToken: string;
 };
+
+export type User = AuthResponse;

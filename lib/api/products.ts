@@ -1,5 +1,6 @@
 import api from "@/lib/api/axios";
-import type { Product, ProductInput, ProductPage } from "@/types/product";
+import type { Category } from "@/types/category";
+import type { Product, ProductInput, ProductListResponse } from "@/types/product";
 
 type ListOptions = { limit: number; skip: number; q?: string; category?: string; sortBy?: string; order?: string; signal?: AbortSignal };
 
@@ -9,12 +10,12 @@ export async function getProducts(options: ListOptions) {
   if (q) params.q = q;
   if (sortBy) { params.sortBy = sortBy; params.order = order || "asc"; }
   const path = q ? "/products/search" : category ? `/products/category/${encodeURIComponent(category)}` : "/products";
-  const { data } = await api.get<ProductPage>(path, { params, signal });
+  const { data } = await api.get<ProductListResponse>(path, { params, signal });
   return data;
 }
 
 export async function getCategories(signal?: AbortSignal) {
-  const { data } = await api.get<Array<{ slug: string; name: string; url: string }>>("/products/categories", { signal });
+  const { data } = await api.get<Category[]>("/products/categories", { signal });
   return data;
 }
 
