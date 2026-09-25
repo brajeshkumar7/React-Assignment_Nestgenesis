@@ -1,0 +1,7 @@
+import { Icon } from "@/components/ui/Icon";
+import type { ChangeEvent } from "react";
+type Props = { category: string; categories: Array<{ slug: string; name: string }>; sort: string; order: string; onCategory: (value: string) => void; onSort: (value: string) => void; onOrder: (value: string) => void };
+export default function ProductFilters({ category, categories, sort, order, onCategory, onSort, onOrder }: Props) {
+  const sortChanged = (event: ChangeEvent<HTMLSelectElement>) => onSort(event.target.value);
+  return <div className="filter-row"><label className="select-control"><Icon name="sliders" size={16} /><select aria-label="Category filter" value={category} onChange={(e) => onCategory(e.target.value)}><option value="">All categories</option>{categories.map((item) => <option key={item.slug} value={item.slug}>{item.name}</option>)}</select><Icon name="down" size={14} /></label><label className="select-control sort-select"><select aria-label="Sort products" value={sort} onChange={sortChanged}><option value="">Sort by</option><option value="title">Name</option><option value="price">Price</option><option value="rating">Rating</option></select><Icon name="down" size={14} /></label><button className={`sort-order ${order === "desc" ? "descending" : ""}`} onClick={() => onOrder(order === "asc" ? "desc" : "asc")} aria-label={`Sort ${order === "asc" ? "descending" : "ascending"}`} title={`Sort ${order === "asc" ? "descending" : "ascending"}`}>↑↓</button></div>;
+}
